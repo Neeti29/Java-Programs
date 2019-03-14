@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class ServletServlet
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/ServletServlet")
+public class ServletServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public ServletServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +28,20 @@ public class First extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
-	        out.println("Welcome "+user);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<html><head><title>Servlet Servlet</title></head>");
+		out.println("<body bgcolor =\"aqua\">");
+		out.println("<h1>Request methods</h1>");
+		out.println("<h1>Servelet ServletServlet at:" + request.getContextPath() + "</h1>");
+		out.println("<h1>Servelet ServletServlet requested URI :" + request.getRequestURI() + "</h1>");
+		out.println("<h1>Servelet ServletServlet protocol :" + request.getProtocol() + "</h1>");
+		out.println("<h2>Server name : "+request.getServerName() +"</h1>");
+		out.println("<h2>Server Port No. : "+request.getServerPort() +"</h1>");
+		out.println("<h3>Random Value for each Request : "+ Math.random() + "</h3>");
+		out.println("</body></html>");
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -45,3 +51,4 @@ public class First extends HttpServlet {
 	}
 
 }
+	

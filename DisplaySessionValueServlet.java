@@ -8,18 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class DisplaySessionValueServlet
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/DisplaySessionValueServlet")
+public class DisplaySessionValueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public DisplaySessionValueServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +30,20 @@ public class First extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
-	        out.println("Welcome "+user);
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		response.setContentType("text/html"); 
+    	PrintWriter out = response.getWriter();
+ 
+    	//get parameters from session object.
+    	HttpSession session=request.getSession(false);  //false means it is using existing session & true means it is creating new session  
+        String userName =(String)session.getAttribute("userName");  
+        String password =(String)session.getAttribute("password");  
+ 
+    	out.println("Username: " + userName + "<br/><br/>");
+    	out.println("Password: " + password);
+ 
+    	out.close();
 	}
 
 	/**

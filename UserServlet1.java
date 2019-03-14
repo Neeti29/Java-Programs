@@ -3,6 +3,8 @@ package com.niit.demo;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class UserServlet1
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/UserServlet1")
+public class UserServlet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public UserServlet1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +31,20 @@ public class First extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
-	        out.println("Welcome "+user);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String uid=request.getParameter("txtuserid");
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		ServletContext context=getServletContext();
+		context.setAttribute("userid", uid);
+		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/UserServlet2");
+		if(dispatcher==null)
+		{
+			response.sendError(response.SC_NO_CONTENT);
+		}
+		dispatcher.forward(request, response);
+		out.close();
 	}
 
 	/**

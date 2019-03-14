@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class FirstName
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/FirstName")
+public class FirstName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public FirstName() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +29,19 @@ public class First extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
-	        out.println("Welcome "+user);
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		response.setContentType("Text/Html");
+		PrintWriter out=response.getWriter();  //used to send response to the client
+		String FirstName=request.getParameter("txtFirstName"); 
+		String LastName=request.getParameter("txtLastName");
+		String City=request.getParameter("txtcity");
+		out.println("Your FirstName is : " + FirstName +"\n" );
+		out.println("<br><br>");
+		out.println("Your LastName is : " + LastName +"\n" );
+		out.println("<br><br>");
+		out.println("Your City is : " + City +"\n" );
+		out.flush();
 	}
 
 	/**

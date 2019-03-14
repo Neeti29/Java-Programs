@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class HiddenFieldServlet
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/HiddenFieldServlet")
+public class HiddenFieldServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public HiddenFieldServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,10 +30,18 @@ public class First extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
-	        out.println("Welcome "+user);
+		
+		 response.setContentType("text/html");
+	      PrintWriter out = response.getWriter();
+	        
+		//getting value submitted in form from HTML file
+	        String user = request.getParameter("user");
+	        
+	        //creating a new hidden form field
+	        out.println("<form action='Second'>");
+	        out.println("<input type='hidden' name='user' value='"+user+"'>");
+	        out.println("<input type='submit' value='submit' >");
+	        out.println("</form>");
 	}
 
 	/**

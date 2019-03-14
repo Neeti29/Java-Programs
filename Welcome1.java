@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class Welcome1
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/Welcome1")
+public class Welcome1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public Welcome1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +29,7 @@ public class First extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
-	        out.println("Welcome "+user);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -42,6 +38,28 @@ public class First extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		try
+		{
+			String n=request.getParameter("user");
+			out.println("<h2>Welcome: "+ n +"</h2>");
+		//	out.println();
+		//	out.println();
+		//	response.sendRedirect("http://www.google.com");
+		    out.println();
+			out.println();
+			response.sendRedirect("http://www.google.co.in/#q="+n);
+			
+
+		}
+		finally
+		{
+			out.close();
+		}
+
 	}
 
 }

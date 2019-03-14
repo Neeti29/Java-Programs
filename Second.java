@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class First
+ * Servlet implementation class Second
  */
-@WebServlet("/First")
-public class First extends HttpServlet {
+@WebServlet("/Second")
+public class Second extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public First() {
+    public Second() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +29,12 @@ public class First extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		 response.setContentType("text/html;charset=UTF-8");
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html");
 	        PrintWriter out = response.getWriter();
-	        String user = request.getParameter("user_name");
+	        
+	        //getting parameter from the hidden field
+	        String user = request.getParameter("user");
 	        out.println("Welcome "+user);
 	}
 
